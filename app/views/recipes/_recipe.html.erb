@@ -1,0 +1,20 @@
+<div id="<%= dom_id recipe %>">
+  <h1 class="my-5">
+    <%= recipe.recipe_name %>
+  </h1>
+  <p class="my-5">
+    <%= markdown(recipe.recipe) %>
+  </p>
+  <p class="my-5">
+    <strong class="block font-medium mb-1">Picture:</strong>
+    <%= recipe.picture %>
+  </p>
+  <p class="my-5">
+    <strong class="block font-medium mb-1">Source:</strong>
+    <%= recipe.source %>
+  </p>
+  <p class="my-5">
+    <strong class="block font-medium mb-1">Recipe category:</strong>
+    <%= recipe.recipe_category.category_name %>
+  </p>
+</div>

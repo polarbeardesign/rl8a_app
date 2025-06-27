@@ -1,0 +1,39 @@
+services:
+
+  web: 
+    build: .
+    command: bundle exec puma -C config/puma.rb
+    ports:
+      - "3000:3000"
+    volumes:
+      - .:/usr/src/app
+    environment:
+      RAILS_ENV: production
+      RAILS_LOG_TO_STDOUT: true
+      RAILS_SERVE_STATIC_FILES: true
+      DATABASE_HOST: database
+      DATABASE_USER: rl8a_app
+      DATABASE_PASSWORD: 
+      SECRET_KEY_BASE: 1eab1461bfc4ffdb36fefa8a3547d214af9882d88b0cd071f1ad1d0412b08dae603e36acf8fde288b989e0c91c9226600de82f371081a382a62ec3f2aa24a8fe
+    depends_on:
+      - database
+      - redis
+      
+  redis:
+    image: redis
+
+  database:
+    image: mysql
+    restart: always
+    environment:
+      MYSQL_DATABASE: rl8a_app_production
+      MYSQL_USER: rl8a_app
+      MYSQL_PASSWORD: 
+      MYSQL_ROOT_PASSWORD: 
+    volumes:
+      - db_data:/var/lib/mysql
+    ports: 
+      - "3306:3306"
+
+volumes:
+  db_data:
